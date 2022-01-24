@@ -1,12 +1,24 @@
 import React from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 import logo from "../../images/logo.png";
 
 const NavBarItem = ({ title, classprops }) => (
-  <li onClick={() => console.log(title)} className={`mx-4 cursor-pointer ${classprops}`}>{title}</li>
+  <li
+    onClick={() => console.log(title)}
+    className={`mx-4 cursor-pointer ${classprops}`}
+  >
+    {title}
+  </li>
 );
+
+const navLinks = [
+  <Link to="market">Market</Link>,
+  <Link to="tutorial">Tutorial</Link>,
+  <Link to="about">About</Link>,
+];
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
@@ -47,15 +59,13 @@ const Navbar = () => {
             <li className="text-xl w-full my-2">
               <AiOutlineClose onClick={() => setToggleMenu(false)} />
             </li>
-            {["Market", "Exchange", "Tutorials", "Wallets"].map(
-              (item, index) => (
-                <NavBarItem
-                  key={item + index}
-                  title={item}
-                  classprops="my-2 text-lg"
-                />
-              )
-            )}
+            {navLinks.map((item, index) => (
+              <NavBarItem
+                key={item + index}
+                title={item}
+                classprops="my-2 text-lg"
+              />
+            ))}
           </ul>
         )}
       </div>

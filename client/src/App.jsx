@@ -1,16 +1,23 @@
-import { Navbar, Welcome, Footer, Services, Transactions } from "./components";
+import { Routes, Route, BrowserRouter, Outlet } from "react-router-dom";
+import { Home, About, Market, Tutorials } from "./pages";
 
-function App() {
+function Layout() {
   return (
     <div className="min-h-screen">
-      <div className="gradient-bg-welcome">
-        <Navbar />
-        <Welcome />
-      </div>
-      <Services />
-      <Transactions />
-      <Footer />
+      <Outlet />
     </div>
+  );
+}
+function App() {
+  return (
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="market" element={<Market />} />
+          <Route path="tutorial" element={<Tutorials />} />
+          <Route path="about" element={<About />} />
+        </Route>
+      </Routes>
   );
 }
 
